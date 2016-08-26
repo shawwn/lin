@@ -44,11 +44,6 @@ i.e. :!&.~ chars when editing Arc code,
 and :. chars when editing Lumen code."
   :group 'lin-faces)
 
-(defface lin-keyword-face
-  '((t :inherit font-lock-type-face))
-  "Face to highlight keyword forms in."
-  :group 'lin-faces)
-
 (defface lin-identifier-face
   '((t :inherit font-lock-keyword-face
        :weight normal))
@@ -400,9 +395,6 @@ Each entry should be either:
            (list
              ;; quoted forms
              `("\\(#?'\\|\\_<[?]\\\\.\\|\\_<[?].\\|\\_<#\\\\.\\)[^] \t\r\n\"'(),;[`|]*" (0 'lin-quoted-face))
-
-             ;; keywords
-             `("\\([^] \t\r\n\"'(),;[`|:!&.~]+[:]\\([ \t]\\|$\\)\\|\\([ \t]\\|^\\)[:][^] \t\r\n\"'(),;[`|:!&.~]+\\)" (0 'lin-keyword-face))
 
              ;; numbers
              `("[-+]?\\_<[0-9]+\\(?:\\.[0-9]*\\)?\\_>" (0 'lin-numeric-value-face))
