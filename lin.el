@@ -217,7 +217,7 @@ highlighted using font lock."
      (put 'fn 'lisp-indent-function 1)
      (cl-dolist (x '(if aif list obj do))
        (put x 'lisp-indent-function 0))
-     (cl-dolist (x '(w/infile w/outfile newsop))
+     (cl-dolist (x '(newsop))
        (put x 'lisp-indent-function 'defun)))))
 
 (defvar lin-customize-indentation #'lin-default-indentation-customizations)
@@ -287,7 +287,7 @@ Each entry should be either:
     (with-temp-buffer
       (insert-file-contents-literally file)
       (goto-char (point-min))
-      (while (re-search-forward "^[(][^ \t]+[ \t]+\\([^ \t]+\\).*[ \t]body\\([)]\\|$\\)" nil t)
+      (while (re-search-forward "^\\(?:[(][^ \t]+\\|[ \t]+[(]\\(?:def[^ \t]*\\|mac\\)\\)[ \t]+\\([^ \t]+\\).*[ \t]body\\([)]\\|$\\)" nil t)
         (let* ((name (match-string 1))
                (sym (and name (intern name))))
           (when sym
