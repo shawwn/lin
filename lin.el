@@ -118,7 +118,7 @@ as the first argument.")
   "Whether to enable rainbow-delimiters-mode (if installed).")
 
 (defvar-local lin-file-patterns nil
-  "Patterns found in file for hi-lock.  Should not be changed.")
+  "Lin font lock patterns for the current file. Should not be changed.")
 (put 'lin-file-patterns 'permanent-local t)
 
 (defvar lin-menu
@@ -136,29 +136,16 @@ as the first argument.")
   "Key map for lin.")
 
 (define-minor-mode lin-mode
-  "Toggle selective highlighting of patterns (Lin mode).
-With a prefix argument ARG, enable Lin mode if ARG is
-positive, and disable it otherwise.  If called from Lisp, enable
-the mode if ARG is omitted or nil.
+  "Toggle highlighting and indentation of Lisp forms (Lin mode). With
+a prefix argument ARG, enable Lin mode if ARG is positive, and disable
+it otherwise. If called from Lisp, enable the mode if ARG is omitted
+or nil.
 
-Lin mode is automatically enabled when you invoke any of the
-highlighting commands listed below, such as \\[highlight-regexp].
-To enable Lin mode in all buffers, use `global-lin-mode'
-or add (global-lin-mode 1) to your init file.
+To enable Lin mode in all Lisp buffers, use `global-lin-mode' or add
+(global-lin-mode 1) to your init file.
 
-In buffers where Font Lock mode is enabled, patterns are
-highlighted using font lock.
-
-When lin is started and if the mode is not excluded or patterns
-rejected, the beginning of the buffer is searched for lines of the
-form:
-  lin: FOO
-
-where FOO is a list of patterns.  The patterns must start before
-position \(number of characters into buffer)
-`lin-file-patterns-range'.  Patterns will be read until
-lin: end is found.  A mode is excluded if it's in the list
-`lin-exclude-modes'."
+In buffers where Font Lock mode is enabled, various Lisp forms are
+highlighted using font lock."
   :group 'lin
   :lighter (:eval (if lin-mode " Lin" ""))
   :global nil
