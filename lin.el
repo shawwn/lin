@@ -105,7 +105,7 @@ When editing non-Lumen code, constant values are: t nil"
   "Face to highlight numbers in."
   :group 'lin-faces)
 
-(defvar lin-let-forms '(let with withs)
+(defvar lin-let-forms '(let with withs atlet atwith atwiths)
   "Forms that take a list of alternating variable/value declarations
 as the first argument.")
 
@@ -217,7 +217,7 @@ highlighted using font lock."
      (put 'fn 'lisp-indent-function 1)
      (cl-dolist (x '(if aif list obj do))
        (put x 'lisp-indent-function 0))
-     (cl-dolist (x '(newsop))
+     (cl-dolist (x '(def mac newsop annotate))
        (put x 'lisp-indent-function 'defun)))))
 
 (defvar lin-customize-indentation #'lin-default-indentation-customizations)
