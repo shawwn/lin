@@ -441,8 +441,6 @@ Each entry should be either:
 
 (defun lin-configure ()
   (interactive)
-  (when (eq major-mode 'fundamental-mode)
-    (lisp-mode))
   (unless (derived-mode-p 'numen-mode)
     (when (memq (lin-language) '(l arc))
       (lin-configure-syntax-table))
