@@ -6,7 +6,7 @@ lin
 Lin lives in a git repository. To download Lin, do
 
 ```
-git clone https://github.com/emacs-lin/lin ~/.emacs.d/lin
+git clone https://github.com/shawwn/lin ~/.emacs.d/lin
 ```
 
 # Install
