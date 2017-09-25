@@ -349,7 +349,11 @@ Each entry should be either:
          (l2 (lin--current-context 2))
          (op1 (car-safe l1))
          (op2 (car-safe l2)))
-    (cond ((lin--let-form-p op2)
+    (cond ((lin--let-form-p op1)
+           (+ 1 (elt l1 2)))
+          ((eq op1 '\#t)
+           (elt l1 2))
+          ((lin--let-form-p op2)
            (save-excursion
              (goto-char (elt l2 1))
              (if (condition-case nil
