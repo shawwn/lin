@@ -27,7 +27,6 @@ i.e. `(' and `)'"
 i.e. `[' and `]'"
   :group 'lin-faces)
 
-
 (defface lin-quoted-face
   '((t
      :inherit font-lock-type-face
