@@ -452,11 +452,6 @@ Each entry should be either:
   (when lin-mode
     (lin-configure)))
 
-(defadvice set-auto-mode-0 (around lin-fix-arc-unrecognized-buffer-format activate)
-  "Prevent `archive-mode' errors when opening .arc Lisp files."
-  (unless (eq (ad-get-arg 0) 'archive-mode)
-    ad-do-it))
-
 (defadvice run-numen (around lin-mode-in-lumen-repl activate)
   "Activate `lin-mode' indentation for Lumen REPLs."
   (prog1 ad-do-it
