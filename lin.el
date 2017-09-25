@@ -166,8 +166,17 @@ highlighted using font lock."
   lin-mode turn-on-lin-if-enabled
   :group 'lin)
 
+(defadvice set-auto-mode-0 (around lin-fix-arc-unrecognized-buffer-format activate)
+  "Prevent `archive-mode' errors when opening .arc Lisp files."
+  (unless (and (eq (ad-get-arg 0) 'archive-mode)
+               (buffer-file-name)
+               (string= "arc" (file-name-extension (buffer-file-name))))
+    ad-do-it))
+
 (defun turn-on-lin-if-enabled ()
   (when (memq (lin-language) '(l el arc scm))
+    (when (eq major-mode 'fundamental-mode)
+      (lisp-mode))
     (lin-mode 1)))
 
 (defun lin-language ()
