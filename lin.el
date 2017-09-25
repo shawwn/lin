@@ -368,8 +368,8 @@ Each entry should be either:
                  (elt l1 2)))))))
 
 (defun lin-indent-function (indent-point state)
-  (let ((n (lin--indent indent-point state)))
-    (if (integerp n) n (lisp-indent-function indent-point state))))
+  (or (lin--indent indent-point state)
+      (lisp-indent-function indent-point state)))
 
 (defun lin-configure-syntax-table ()
   "Configure Lisp syntax table for the current buffer."
