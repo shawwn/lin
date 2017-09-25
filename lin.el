@@ -303,7 +303,10 @@ Each entry should be either:
 (defun lin--current-offset ()
   (save-excursion
     (let ((x (point)))
-      (beginning-of-line) (- x (point)))))
+      (beginning-of-line)
+      (lin--forward-whitespace)
+      (+ (current-indentation)
+         (- x (point))))))
 
 (defun lin--start-of-list (&optional n)
   (backward-up-list (or n 1))
