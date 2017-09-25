@@ -109,9 +109,6 @@ When editing non-Lumen code, constant values are: t nil"
   "Forms that take a list of alternating variable/value declarations
 as the first argument.")
 
-(defvar lin-use-rainbow-mode t
-  "Whether to enable rainbow-delimiters-mode (if installed).")
-
 (defvar-local lin-file-patterns nil
   "Lin font lock patterns for the current file. Should not be changed.")
 (put 'lin-file-patterns 'permanent-local t)
@@ -162,8 +159,6 @@ highlighted using font lock."
       (font-lock-remove-keywords nil lin-file-patterns)
       (setq lin-file-patterns nil)
       (remove-overlays nil nil 'lin-overlay t)
-      (when (and lin-use-rainbow-mode (fboundp 'rainbow-delimiters-mode))
-        (rainbow-delimiters-mode -1))
       (when font-lock-fontified (font-lock-fontify-buffer)))
     (remove-hook 'font-lock-mode-hook 'lin-font-lock-hook t)
     (remove-hook 'after-save-hook 'lin-after-save-hook t)))
@@ -391,8 +386,6 @@ Each entry should be either:
   "Configure Lisp highlighting for the current buffer."
   (interactive)
   (let ((lang (lin-language)))
-    (when (fboundp 'rainbow-delimiters-mode)
-      (rainbow-delimiters-mode -1))
     (lin-set-file-patterns
      (delq nil
            (list
@@ -438,9 +431,7 @@ Each entry should be either:
 
     (unless (eq lang 'el)
       ;; remove Emacs Lisp highlighting
-      (lin-remove-default-patterns))
-    (when (and lin-use-rainbow-mode (fboundp 'rainbow-delimiters-mode))
-      (rainbow-delimiters-mode 1))))
+      (lin-remove-default-patterns))))
 
 (defun lin-configure ()
   (interactive)
