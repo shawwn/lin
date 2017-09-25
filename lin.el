@@ -473,4 +473,9 @@ Each entry should be either:
             (with-current-buffer buf
               (lin-mode 1))))))))
 
+(defadvice slime-simple-completions (around fix-errors-if-slime-unconnected activate)
+  "When slime isn't connected, prevent errors when asking for completions."
+  (when (slime-connected-p)
+    ad-do-it))
+
 (provide 'lin)
