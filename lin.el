@@ -206,9 +206,12 @@ highlighted using font lock."
 
 (defun lin-default-indentation-customizations ()
   (cl-case (lin-language)
-    ('l (put 'if 'lisp-indent-function 2))
+    ('l
+     (setq-local electric-indent-inhibit t)
+     (put 'if 'lisp-indent-function 2))
     ('arc
-     (put 'fn 'lisp-indent-function 1)
+     (setq-local electric-indent-inhibit t)
+     (put 'fn 'lisp-indent-function 'defun)
      (cl-dolist (x '(if aif list obj do))
        (put x 'lisp-indent-function 0))
      (cl-dolist (x '(def mac newsop annotate))
